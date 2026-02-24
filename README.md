@@ -1,112 +1,45 @@
-# Draw + Design Patterns + UML
----
-## Innehåll
-- [Kravspecifikation](#kravspecifikation)
-  - [UML-diagram](#uml-diagram)
-  - [Designkrav](#designkrav)
-  - [Generella krav](#generella-krav)
-  - [Lagring](#lagring)
-  - [Arkivmeny](#arkivmeny)
-  - [Lab 3 - Nya krav](#lab-3-nya-krav)
-- [UML-Diagram](#resultat-laboration-1-analys)
-  - [Use case diagram](#use-case-diagram)
-  - [Sequence diagrams](#sequence-diagrams)
-  - [Class diagram](#class-diagram)
-- [Implementering](#resultat-laboration-2-implementering)
-  - [Tankar kring källkoden](#tankar-kring-källkoden)
-- [Runtime-byte av View](#resultat-laboration-3-runtime-byte-av-view)
-  - [Tankar kring källkoden](#tankar-kring-källkoden)
+# Draw + Design Patterns
 
-## Kravspecifikation
+## Context
 
-🕓 = Ej påbörjad
-⏳ = Pågående
-✅ = Klar
-
-| UML-diagram    | Status |
-|----------------|--------|
-| Use-case       |  ✅   |
-| Sequence analys|  ✅   |
-| Sequence design|  ✅   |
-| Class          |  ✅   |
-
-| Designkrav                                      | Status |
-|-------------------------------------------------|--------|
-| UML-diagram för analys + design                 |  ✅   |
-| Varje diagram ska ha förklarande namn           |  ✅   |
-| Varje diagram ska noteras tillhöra analys/design|  ✅   |
-| Följa MVC-struktur med definierade gränssnitt   |  ✅   |
-| Lagring i vanliga textfiler (Unicode)           |  ✅   |
-
-| Generella krav                      | Status |
-|-------------------------------------|--------|
-| Kompletta textredigeringsmöjligheter|  ✅   |
-| Skriva in text                      |  ✅   |
-| Klippa ut text (CTRL-X)             |  ✅   |
-| Kopiera text (CTRL-C)               |  ✅   |
-| Klistra in text (CTRL-V)            |  ✅   |
-| Meny för ovanstående (krävs ej)     |  ✅   |
-
-| Lagring                                 | Status |
-|-----------------------------------------|--------|
-| Lagring (valfritt format - men till fil)|  ✅   |
-
-| Arkivmeny| Status |
-|----------|--------|
-| Open     |  ✅   |
-| New      |  ✅   |
-| Save     |  ✅   |
-| Save as  |  ✅   |
-| Exit     |  ✅   |
-
-| Lab 3 - Nya krav                        | Status |
-|-----------------------------------------|--------|
-| Console-view                            |  ✅   |
-| Val av view vid uppstart                |  ✅   |
-| Använd factory för instantiera vald view|  ✅   |
+* **Origin** Developed as part of a course in Java, UML and Design Patterns at Karlstad University.
+* **Objective** A drawing program where users can draw different shapes with chosen line width/line color/fill color. Implements several distinct design patterns.
+* **Status** 🟢 Complete/Functional
 
 ---
 
-## UML-Diagram
+## Systems Architechture
 
-### Use case diagram
-![Use case diagram](/assets/images/diagram-v4-final/use-case-diagram.png)
-
----
-
-### Sequence diagrams
-![Start app sequence](/assets/images/diagram-v4-final/sequence-start.png)
-![Exit app sequence](/assets/images/diagram-v4-final/sequence-exit.png)
-![Handle event sequence](/assets/images/diagram-v4-final/sequence-handle-event.png)
-![Create new sequence](/assets/images/diagram-v4-final/sequence-create-new.png)
-![Save sequence analys](/assets/images/diagram-v4-final/sequence-save.png)
-![Save as sequence analys](/assets/images/diagram-v4-final/sequence-save-as.png)
-![Open sequence analys](/assets/images/diagram-v4-final/sequence-open.png)
-![Edit text sequence analys](/assets/images/diagram-v4-final/sequence-edit-text.png)
-![Delete sequence analys](/assets/images/diagram-v4-final/sequence-delete.png)
+* **Logic** MVC
+* **Tech Stack** Java + Java Swing (Eclipse IDE)
 
 ---
 
-### Class diagram
-![Class diagram](/assets/images/diagram-v4-final/class-diagram.png)
+## Functionality
 
-## Implementering
+* Draw different shapes (circle, line, rectangle)
+* Pick line width, -color, -thickness and fill color.
+* Data persistence throuch object serialization (.dat)
+* This app was integrated against a pre-made composite-pattern (model/composite)
+* Distinct design patterns implemented and where to look for them:
+  - Chain of responsibility (app/controller/chain)
+  - Composite (model/composite)
+  - State (model/state)
+  - Visitor (model/visitor)
+  - Facade (model)
+  - Command (controller/commands)
 
-### Tankar kring källkoden
+---
 
-<ul>
-	<li>Väldigt bantad Controller som enbart blir kallad och skickar returer</li>
-	<li>Detta med syftet att göra den fullständigt obrydd om vilken view som kommmunicerar med den</li>
-	<li>Controllern sköter ingen flow-logik som det ser ut nu - tanken med detta var att swing/console-gränssnitt sköter interaktion på ganska olika sätt (ta swings namngivna static final int:s som returneras av dialogrutorna vs sifferval som behöver validering i console). Det kändes riskfyllt att ta hänsyn till alla små specifika quirks i controllern, bättre låta vyerna bry sig om sina egna problem.</li>
-	<li>Viss feedback till användaren bör läggas till i nästa skede, tex visa aktiv fil, antal ord, antal tecken etc...</li>
-</ul>
+## Setup & Usage
 
-## Runtime-byte av View
+1. Clone the repository
+2. Open in IDE of your choice
 
-### Tankar kring källkoden
+---
 
-<ul>
-	<li>Stor refaktorering av MainController för att förlytta programflödeslogik dit.</li>
-	<li>Skrev ett interface IView för ett generiskt "kontrakt" mellan controller-view.</li>
-	<li>Definierade enums för val (Choices) med syftet att ge både swing-, och konsol vyn ett enhetligt sätt att kommunicera val till controllern.</li>
-</ul>
+## Learning Outcomes
+
+* Implementing Gang of Four design patterns in a Java setting
+* Creating a layered MVC structure from scratch
+* Integrating with legacy code (the pre-existing composite)
