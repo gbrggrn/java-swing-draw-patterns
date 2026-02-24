@@ -8,6 +8,14 @@
 
 ---
 
+## Notes
+
+* This app was integrated against a pre-made composite-pattern (model/composite)
+* v4 contains the initial integration
+* v4.1 contains the complete drawing program
+
+---
+
 ## Systems Architechture
 
 * **Logic** MVC
@@ -20,7 +28,6 @@
 * Draw different shapes (circle, line, rectangle)
 * Pick line width, -color, -thickness and fill color.
 * Data persistence throuch object serialization (.dat)
-* This app was integrated against a pre-made composite-pattern (model/composite)
 * Distinct design patterns implemented and where to look for them:
   - Chain of responsibility (app/controller/chain)
   - Composite (model/composite)
